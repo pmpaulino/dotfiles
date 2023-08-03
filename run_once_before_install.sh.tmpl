@@ -1,0 +1,66 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+# Install Oh My Zsh
+if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
+  (echo '💰  Installing oh-my-zsh' && yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+fi
+
+# Install Homebrew
+command -v brew >/dev/null 2>&1 || \
+  (echo '🍺  Installing Homebrew' && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+
+# Cleanup chezmoi
+if [ -f ~/.local/bin/chezmoi ]; then
+  echo "🧹  Cleaning up chezmoi..."
+  rm ~/.local/bin/chezmoi
+fi
+
+# Brew bundle
+echo "📦  Installing packages..."
+brew bundle --no-upgrade --no-lock --file=/dev/stdin <<EOF
+### BREWFILE START
+tap "1password/tap"
+tap "equinix-labs/otel-cli"
+tap "goreleaser/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+brew "act"
+brew "ansible"
+brew "awscli"
+brew "bat"
+brew "chezmoi"
+brew "gh"
+brew "git"
+brew "go"
+brew "goreleaser"
+brew "helm"
+brew "jq"
+brew "kubectx"
+brew "mas"
+brew "node"
+brew "pre-commit"
+brew "ranger"
+brew "ripgrep"
+brew "tfenv"
+brew "tgenv"
+brew "tree"
+brew "yq"
+brew "equinix-labs/otel-cli/otel-cli"
+cask "1password"
+cask "1password-cli"
+cask "discord"
+cask "google-chrome"
+cask "iterm2"
+cask "microsoft-teams"
+cask "rancher"
+cask "rectangle"
+cask "signal"
+cask "slack"
+cask "spotify"
+cask "visual-studio-code"
+cask "zoom"
+mas "Amphetamine", id: 937984704
+### BREWFILE END
+EOF
+{{ end -}}

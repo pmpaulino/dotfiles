@@ -1,0 +1,28 @@
+[user]
+    name = Patrick Paulino
+    email = {{ (onepasswordItemFields "2mhp2daf5vcvgmscl5vtbp6l5e").personal_email.value }}
+    signingkey = {{ (onepasswordDetailsFields "2mhp2daf5vcvgmscl5vtbp6l5e").public_key.value }}
+
+[init]
+  defaultBranch = main
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+    gpgsign = true
+
+[includeIf "gitdir:~/Projects/liatrio/**"]
+    path = ~/Projects/liatrio/.gitconfig
+
+[includeIf "gitdir:~/Projects/client_0/**"]
+    path = ~/Projects/client_0/.gitconfig
+
+[rebase]
+    autosquash = true
+
+[fetch]
+    prune = true
