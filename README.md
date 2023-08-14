@@ -18,3 +18,9 @@ This will install and initialize `chezmoi`. During this initialization, `chezmoi
 - `oh-my-zsh`
 - `homebrew`
 - run the `brew budle` command
+
+You will also need to manually configure the 1Password CLI GitHub plugin:
+
+```shell
+op plugin init gh
+```
