@@ -100,9 +100,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="$HOME/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # Sync Brewfile with Chezmoi
 syncbrewtochez() {
@@ -148,3 +146,15 @@ export GH_PAT="op://Private/xndcgybadcw6stdi6o6xjexexq/token"
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# Grafana Cloud
+export GRAF_USER="op://Private/oac7q5xjasskyomrv24ubmo5iq/GRAF_USER"
+export GRAF_PAT="op://Private/oac7q5xjasskyomrv24ubmo5iq/GRAF_PAT"
+
+{{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
+# client_1
+export GITLAB_TOKEN_="op://Private/jshezjjznm6m676hkesgisns7i/GITLAB_TOKEN"
+export AWS_DEFAULT_REGION="op://Private/jshezjjznm6m676hkesgisns7i/AWS_DEFAULT_REGION"
+export AWS_DEFAULT_PROFILE="op://Private/jshezjjznm6m676hkesgisns7i/AWS_DEFAULT_PROFILE"
+alias awslogin="op://Private/jshezjjznm6m676hkesgisns7i/awslogin"
+{{- end }}

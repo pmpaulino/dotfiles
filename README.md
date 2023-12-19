@@ -24,3 +24,9 @@ You will also need to manually configure the 1Password CLI GitHub plugin:
 ```shell
 op plugin init gh
 ```
+
+You should also disable rancher desktop managing your dotfiles by running:
+
+```shell
+rdctl set --application.path-management-strategy manual
+```
