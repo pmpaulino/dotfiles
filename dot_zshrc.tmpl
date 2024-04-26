@@ -143,9 +143,11 @@ export GH_USER="pmpaulino"
 export GH_PAT="op://Private/xndcgybadcw6stdi6o6xjexexq/token"
 
 # Go
-export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOVERSION="1.21"
+export GOPATH="$HOME/go"
+export GOROOT="$(brew --prefix go@${GOVERSION})/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="/opt/homebrew/opt/go@${GOVERSION}/bin:$PATH"
 
 # Grafana Cloud
 export GRAF_USER="op://Private/oac7q5xjasskyomrv24ubmo5iq/GRAF_USER"
@@ -158,3 +160,6 @@ export AWS_DEFAULT_REGION="op://Private/jshezjjznm6m676hkesgisns7i/AWS_DEFAULT_R
 export AWS_DEFAULT_PROFILE="op://Private/jshezjjznm6m676hkesgisns7i/AWS_DEFAULT_PROFILE"
 alias awslogin="op://Private/jshezjjznm6m676hkesgisns7i/awslogin"
 {{- end }}
+
+# Autocompletion
+source <(kubectl completion zsh)
