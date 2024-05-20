@@ -1,15 +1,67 @@
 #!/bin/bash
 
-# Install Oh My Zsh
-if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
-  (echo '💰  Installing oh-my-zsh' && yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+{{- if eq .chezmoi.os "linux" }}
+# Install 1Password and 1Password CLI
+if ! dpkg-query -W -f='${Status}' 1password 2>/dev/null | grep -q "ok installed"; then
+  curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+  sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+  sudo tee /etc/apt/sources.list.d/1password.list
+  sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+  curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+  sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+  sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+  curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+  sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+  sudo apt update && sudo apt install 1password 1password-cli
 fi
 
-# Cleanup chezmoi
-if [ -f ~/.local/bin/chezmoi ]; then
-  echo "🧹  Cleaning up chezmoi..."
-  rm ~/.local/bin/chezmoi
+# Check if zsh is installed
+if ! command -v zsh &> /dev/null; then
+  echo "zsh is not installed. Installing..."
+  sudo apt install -y zsh
 fi
+
+# Check if default shell is zsh
+if [[ "$(basename "$SHELL")" != "zsh" ]]; then
+  echo "Changing default shell to zsh..."
+  chsh -s "$(command -v zsh)"
+fi
+
+# Install Homebrew
+if ! command -v brew &> /dev/null; then
+  sudo apt update && sudo apt install -y build-essential
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if ! grep -q 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' ~/.zshrc; then
+  (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+if ! grep -q 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' ~/.bashrc; then
+  (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Check if gcc is installed
+if ! dpkg-query -W -f='${Status}' gcc 2>/dev/null | grep -q "ok installed"; then
+  echo "gcc is not installed. Installing..."
+  brew install gcc
+fi
+
+if ! dpkg-query -W -f='${Status}' code 2>/dev/null | grep -q "ok installed"; then
+  echo "VS Code is not installed. Installing..."
+  sudo apt-get install wget gpg
+  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+  echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+  rm -f packages.microsoft.gpg
+  sudo apt install apt-transport-https
+  sudo apt update
+  sudo apt install code # or code-insiders
+fi
+{{- end }}
 
 {{ if eq .chezmoi.os "darwin" -}}
 # Install Homebrew
@@ -23,91 +75,106 @@ if ! grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-
-# Brew bundle
+{{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
 echo "📦  Installing packages..."
 brew bundle --no-upgrade --no-lock --file=/dev/stdin <<EOF
-
-{{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
-  # client_1 brew
   tap {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew_tap.value }}
   brew {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew.value }}
+EOF
 {{- end }}
 
-### BREWFILE START
-tap "1password/tap"
-tap "equinix-labs/otel-cli"
-tap "goreleaser/tap"
-tap "grafana/grafana"
-tap "homebrew/bundle"
-tap "norwoodj/tap"
-brew "act"
-brew "python@3.12"
-brew "ansible"
-brew "python@3.11"
-brew "awscli"
-brew "bat"
-brew "chezmoi"
-brew "coreutils"
-brew "docutils"
-brew "fzf"
-brew "gh"
-brew "git"
-brew "glab"
-brew "gnutls"
-brew "go"
-brew "go-task"
-brew "go@1.21"
-brew "goreleaser"
-brew "graphviz"
-brew "helm"
-brew "jq"
-brew "k9s"
-brew "keyring"
-brew "kubectx"
-brew "qemu"
-brew "lima"
-brew "mas"
-brew "molecule"
-brew "node"
-brew "poetry"
-brew "pre-commit"
-brew "ranger"
-brew "ripgrep"
-brew "telnet"
-brew "terraform-docs"
-brew "tfenv"
-brew "tflint"
-brew "tgenv"
-brew "tree"
-brew "virtualenv"
-brew "yamlfmt"
-brew "yq"
-brew "equinix-labs/otel-cli/otel-cli"
-brew "grafana/grafana/alloy"
-brew "norwoodj/tap/helm-docs"
-cask "1password-cli"
-cask "discord"
-cask "flux"
-cask "microsoft-teams"
-cask "ngrok"
-cask "postman"
-cask "rancher"
-cask "rectangle"
-cask "signal"
-cask "slack"
-cask "spotify"
-cask "visual-studio-code"
-cask "zoom"
-mas "1Password for Safari", id: 1569813296
-mas "Amphetamine", id: 937984704
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-### BREWFILE END
+echo "📦  Installing packages..."
+brew bundle --no-upgrade --no-lock --file=/dev/stdin <<EOF
+  tap "homebrew/bundle"
+  tap "1password/tap"
+  
+  brew "qemu"
+  brew "lima"
+  brew "mas"
+  brew "coreutils"
+  brew "gnutls"
+  brew "telnet"
+
+  cask "1password-cli"
+  cask "discord"
+  cask "flux"
+  cask "microsoft-teams"
+  cask "ngrok"
+  cask "postman"
+  cask "rancher"
+  cask "rectangle"
+  cask "signal"
+  cask "slack"
+  cask "spotify"
+  cask "visual-studio-code"
+  cask "zoom"
+  
+  mas "1Password for Safari", id: 1569813296
+  mas "Amphetamine", id: 937984704
+  mas "Keynote", id: 409183694
+  mas "Numbers", id: 409203825
+  mas "Pages", id: 409201541
 EOF
+{{- end }}
+
+echo "📦  Installing packages..."
+brew bundle --no-upgrade --no-lock --file=/dev/stdin <<EOF
+  tap "equinix-labs/otel-cli"
+  tap "goreleaser/tap"
+  tap "homebrew/bundle"
+  tap "norwoodj/tap"
+  # brew "act"
+  brew "python@3.12"
+  brew "ansible"
+  brew "python@3.11"
+  brew "awscli"
+  brew "bat"
+  brew "chezmoi"
+  brew "docutils"
+  brew "fzf"
+  brew "gcc"
+  brew "gh"
+  brew "git"
+  brew "glab"
+  brew "go"
+  brew "go-task"
+  brew "go@1.21"
+  brew "goreleaser"
+  brew "graphviz"
+  brew "helm"
+  brew "jq"
+  brew "k9s"
+  brew "keyring"
+  brew "kubectx"
+  brew "molecule"
+  brew "node"
+  brew "poetry"
+  brew "pre-commit"
+  brew "ranger"
+  brew "ripgrep"
+  brew "terraform-docs"
+  brew "tfenv"
+  brew "tflint"
+  brew "tgenv"
+  brew "tree"
+  brew "virtualenv"
+  brew "yamlfmt"
+  brew "yq"
+  brew "equinix-labs/otel-cli/otel-cli"
+  brew "norwoodj/tap/helm-docs"
+EOF
+
+# Install Oh My Zsh
+if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
+  (echo '💰  Installing oh-my-zsh' && yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+fi
+
+# # Cleanup chezmoi
+# if [ -f ~/.local/bin/chezmoi ]; then
+#   echo "🧹  Cleaning up chezmoi..."
+#   rm ~/.local/bin/chezmoi
+# fi
 
 # TODO: Setup op gh plugin
 # TODO: tfenv install and tfenv use
 # TODO: install python somehow
-{{ end -}}
