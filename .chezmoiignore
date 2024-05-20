@@ -1,2 +1,7 @@
 .vscode
 README.md
+
+{{- if ne .chezmoi.os "darwin" }}
+Library/
+Library/**
+{{- end }}
