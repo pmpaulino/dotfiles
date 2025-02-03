@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(1password aliases alias-finder ansible brew chezmoi colored-man-pages colorize command-not-found common-aliases direnv docker docker-compose fzf gatsby gcloud gh git git-auto-fetch git-commit gnu-utils golang helm history istioctl jira kubectl kubectx macos nvm opentofu pre-commit python sigstore skaffold ssh sudo terraform thefuck themes tldr vscode zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,9 +83,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+    export EDITOR='vim'
 else
-  export EDITOR='code --wait'
+    export EDITOR='code --wait'
 fi
 
 # Compilation flags
@@ -147,11 +147,12 @@ export GH_USER="pmpaulino"
 export GH_PAT="op://Private/xndcgybadcw6stdi6o6xjexexq/token"
 
 # Go
-export GOVERSION="1.21"
-export GOPATH="$HOME/go"
-export GOROOT="$(brew --prefix go@${GOVERSION})/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-export PATH="/opt/homebrew/opt/go@${GOVERSION}/bin:$PATH"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+
 
 # Grafana Cloud
 export GRAF_USER="op://Private/oac7q5xjasskyomrv24ubmo5iq/GRAF_USER"
@@ -168,8 +169,45 @@ alias awslogin="op://Private/jshezjjznm6m676hkesgisns7i/awslogin"
 # Autocompletion
 source <(kubectl completion zsh)
 
-# nvm
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# NVM
+# TODO: install nvm, curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# rye
+source "$HOME/.rye/env"
+
+# draw.io
+alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
+
+# autocompletion
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+# kpv3-cli
+source <($HOME/.kpv3-cli/bin/kpv3-cli source)
+if ! [ -s $HOME/.kpv3-cli/consent.yaml ]; then
+    kpv3-cli consent
+fi
+if ! [ -s $HOME/.kube/k8s-platform-v3 ]; then
+    kpv3-cli kubeconfig -w
+fi
+
+# thefuck
+eval $(thefuck --alias)
+
+# syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# fzf
+export FZF_DEFAULT_OPTS=" \
+    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+    --color=selected-bg:#45475a \
+    --multi"
