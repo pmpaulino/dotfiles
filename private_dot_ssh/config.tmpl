@@ -4,16 +4,20 @@ Host *
   {{ else if eq .chezmoi.os "linux" -}}
 	IdentityAgent ~/.1password/agent.sock
   {{ end -}}
+  IdentitiesOnly yes
+
+Host pi
+  User ubuntu
   IdentityFile ~/.ssh/{{ (onepasswordItemFields "2mhp2daf5vcvgmscl5vtbp6l5e").file_name.value }}
 
+Host github.com
+  IdentityFile ~/.ssh/{{ (onepasswordItemFields "2mhp2daf5vcvgmscl5vtbp6l5e").file_name.value }}
 
 Host {{ (onepasswordItemFields "i7sdiseuc47purydotahi7ksfm").proxy_website.value }}
   HostName github.com
   IdentityFile ~/.ssh/{{ (onepasswordItemFields "i7sdiseuc47purydotahi7ksfm").file_name.value }}
-  IdentitiesOnly yes
 
 {{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
 Host {{ (onepasswordItemFields "cg7z24pmvlbjmi6xwc4s4muqvi").git_hostname.value }}
   IdentityFile ~/.ssh/{{ (onepasswordItemFields "cg7z24pmvlbjmi6xwc4s4muqvi").file_name.value }}
-  IdentitiesOnly yes
 {{- end }}
