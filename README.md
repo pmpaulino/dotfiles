@@ -30,3 +30,13 @@ You should also disable rancher desktop managing your dotfiles by running:
 ```shell
 rdctl set --application.path-management-strategy manual
 ```
+
+## TODO
+
+- [ ] configure 1Password CLI via chezmoi
+- [ ] mv k9s configuration to ~/.config
+- [ ] mv ghostty configuration to ~/.config
+- [ ] mv lazygit configuration to ~/.config
+- [ ] add Raycast configuration
+- [ ] Fix the hardcoded home dir in dot_config/btop/btop.conf
+- [ ] Remove themes from this repo, dl them from the internet as apart of the install script
