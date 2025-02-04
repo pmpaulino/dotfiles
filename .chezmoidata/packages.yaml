@@ -80,6 +80,7 @@ packages:
     - "1password"
     - "1password-cli"
     - "aerospace"
+    - "cursor"
     - "discord"
     - "ghostty"
     - "google-chrome"
