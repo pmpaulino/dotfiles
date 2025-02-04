@@ -31,13 +31,45 @@ You should also disable rancher desktop managing your dotfiles by running:
 rdctl set --application.path-management-strategy manual
 ```
 
-## TODO
+## Improvements
 
-- [ ] configure 1Password CLI via chezmoi
-- [ ] mv k9s configuration to ~/.config
-- [ ] mv ghostty configuration to ~/.config
-- [ ] mv lazygit configuration to ~/.config
-- [ ] add Raycast configuration
-- [ ] Fix the hardcoded home dir in dot_config/btop/btop.conf
-- [ ] Remove themes from this repo, dl them from the internet as apart of the install script
-- [ ] Move toward goenv
+### TODO
+
+- [ ] Automate 1Password CLI configuration using chezmoi
+- [ ] Migrate application configs to ~/.config directory:
+  - [ ] k9s
+  - [ ] ghostty
+  - [ ] lazygit
+- [ ] Add Raycast configuration and settings
+- [ ] Fix btop configuration to use dynamic home directory path
+- [ ] Download themes during install rather than storing in repo
+- [ ] Complete migration to goenv for Go version management
+- [ ] Evaluate migration from Homebrew to Nix package manager
+
+### Documentation
+
+- [ ] Add detailed setup/installation guide
+- [ ] Document templating patterns and decisions
+- [ ] Add customization guide for personal preferences
+- [ ] Document cross-platform differences and considerations
+
+### Package Management
+
+- [ ] Reorganize packages.yaml into purpose-specific groups (dev, productivity, system)
+- [ ] Add version pinning for critical tools
+- [ ] Document package update strategy and maintenance
+- [ ] Add rationale for package selections
+
+### Installation & Maintenance
+
+- [ ] Add installation verification steps
+- [ ] Create rollback procedures for failed installations
+- [ ] Add testing framework for installation scripts
+- [ ] Automate remaining manual setup steps
+- [ ] Add system health checks and diagnostics
+
+### Security & Best Practices
+
+- [ ] Document security practices and 1Password integration
+- [ ] Add checksum verification for downloaded resources
+- [ ] Create backup strategy for critical configs
