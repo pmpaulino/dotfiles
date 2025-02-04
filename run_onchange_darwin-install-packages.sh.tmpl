@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "📦  Installing packages..."
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ if eq .chezmoi.os "darwin" -}}
+{{ range .packages.darwin.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end -}}
+{{ end -}}
+{{ range .packages.common.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.common.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+EOF
