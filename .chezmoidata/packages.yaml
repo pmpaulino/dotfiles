@@ -107,3 +107,14 @@ packages:
       id: 409201541
     - name: "Tailscale"
       id: 1475387142
+  linux:
+    apt:
+    - build-essential
+    - zsh
+    - wget
+    - gpg
+    - apt-transport-https
+    - code
+    - gcc
+    - 1password
+    - 1password-cli

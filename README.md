@@ -87,6 +87,7 @@ This repository follows [Conventional Commits](https://www.conventionalcommits.o
 - `test`: Adding or updating tests
 
 Examples:
+
 - feat(zsh): add new aliases for git commands
 - fix(brew): correct package installation order
 - docs(readme): update installation instructions

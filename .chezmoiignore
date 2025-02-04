@@ -1,5 +1,7 @@
 .vscode
 README.md
+.github/
+.gitignore
 
 {{- if ne .chezmoi.os "darwin" }}
 Library/
