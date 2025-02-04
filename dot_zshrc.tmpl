@@ -100,38 +100,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$HOME/.rd/bin:$PATH"
-
-# Sync Brewfile with Chezmoi
-syncbrewtochez() {
-    # Run brew bundle dump to update the Brewfile
-    brew bundle dump --formula --casks --tap --mas --whalebrew --file "$HOME/.local/share/chezmoi/tmp_brewfile" --force
-
-    # Define the input and output file names
-    input_file="$HOME/.local/share/chezmoi/run_once_before_install.sh.tmpl"
-    tmp_brew_file="$HOME/.local/share/chezmoi/tmp_brewfile"
-    tmp_output="$HOME/.local/share/chezmoi/temp_output.sh.tmpl"
-
-    # Define the start and end marker lines
-    start_marker="### BREWFILE START"
-    end_marker="### BREWFILE END"
-
-    # Get the line numbers of the start and end markers
-    start_line=$(grep -n "$start_marker" "$input_file" | cut -f1 -d:)
-    end_line=$(grep -n "$end_marker" "$input_file" | cut -f1 -d:)
-
-    # Create the new content with the content from the another file
-    head -n $((start_line)) "$input_file" > "$tmp_output"
-    cat "$tmp_brew_file" >> "$tmp_output"
-    tail -n +$((end_line)) "$input_file" >> "$tmp_output"
-
-    # Replace the original file with the new file
-    mv "$tmp_output" "$input_file"
-
-    # Remove the temporary brewfile
-    rm "$tmp_brew_file"
-}
-
 # 1Password
 source $HOME/.config/op/plugins.sh
 
@@ -176,6 +144,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # rye
+# TODO: move to uv from rye
 source "$HOME/.rye/env"
 
 # draw.io
