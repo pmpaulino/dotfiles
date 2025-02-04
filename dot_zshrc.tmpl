@@ -101,7 +101,9 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # 1Password
-source $HOME/.config/op/plugins.sh
+if [ -f "$HOME/.config/op/plugins.sh" ]; then
+    source "$HOME/.config/op/plugins.sh"
+fi
 
 # Homebrew
 {{- if eq .chezmoi.os "linux" }}
@@ -145,7 +147,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # rye
 # TODO: move to uv from rye
-source "$HOME/.rye/env"
+if [ -f "$HOME/.rye/env" ]; then
+    source "$HOME/.rye/env"
+fi
 
 # draw.io
 alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
@@ -156,7 +160,10 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 # kpv3-cli
-source <($HOME/.kpv3-cli/bin/kpv3-cli source)
+if [ -f "$HOME/.kpv3-cli/bin/kpv3-cli" ]; then
+    source <($HOME/.kpv3-cli/bin/kpv3-cli source)
+fi
+
 if ! [ -s $HOME/.kpv3-cli/consent.yaml ]; then
     kpv3-cli consent
 fi
@@ -168,7 +175,11 @@ fi
 eval $(thefuck --alias)
 
 # syntax highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- if eq .chezmoi.os "linux" }}
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- else }}
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- end }}
 
 # zoxide
 eval "$(zoxide init zsh)"
