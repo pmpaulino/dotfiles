@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pmpaulino/dotfiles/compare/v1.1.0...v1.2.0) (2025-02-04)
+
+
+### Features
+
+* improve zshrc cross-platform compatibility and source file checks ([e6193a4](https://github.com/pmpaulino/dotfiles/commit/e6193a4ad74ff79514d87fec6190cc2bc677eff4))
+
 # [1.1.0](https://github.com/pmpaulino/dotfiles/compare/v1.0.0...v1.1.0) (2025-02-04)
 
 
