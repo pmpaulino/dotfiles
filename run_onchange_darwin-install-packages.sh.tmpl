@@ -1,26 +1,34 @@
 #!/bin/bash
 
+{{/* Build the Brewfile content first */}}
+{{- $brewfile := "" -}}
+
+{{/* Add Darwin-specific packages */}}
+{{- if eq .chezmoi.os "darwin" -}}
+  {{- range .packages.darwin.taps -}}
+    {{- $brewfile = print $brewfile "tap " (. | quote) "\n" -}}
+  {{- end -}}
+  {{- range .packages.darwin.brews -}}
+    {{- $brewfile = print $brewfile "brew " (. | quote) "\n" -}}
+  {{- end -}}
+  {{- range .packages.darwin.casks -}}
+    {{- $brewfile = print $brewfile "cask " (. | quote) "\n" -}}
+  {{- end -}}
+  {{- range .packages.darwin.mas -}}
+    {{- $brewfile = print $brewfile "mas " (.name | quote) ", id: " .id "\n" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Add common packages */}}
+{{- range .packages.common.taps -}}
+  {{- $brewfile = print $brewfile "tap " (. | quote) "\n" -}}
+{{- end -}}
+{{- range .packages.common.brews -}}
+  {{- $brewfile = print $brewfile "brew " (. | quote) "\n" -}}
+{{- end -}}
+
 echo "📦  Installing packages..."
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
-{{ if eq .chezmoi.os "darwin" -}}
-{{ range .packages.darwin.taps -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ range .packages.darwin.brews -}}
-brew {{ . | quote }}
-{{ end -}}
-{{ range .packages.darwin.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{ range .packages.darwin.mas -}}
-mas {{ .name | quote }}, id: {{ .id }}
-{{ end -}}
-{{ end -}}
-{{ range .packages.common.taps -}}
-tap {{ . | quote }}
-{{ end -}}
-{{ range .packages.common.brews -}}
-brew {{ . | quote }}
-{{ end -}}
+{{ $brewfile }}
 EOF
