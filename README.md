@@ -73,3 +73,20 @@ rdctl set --application.path-management-strategy manual
 - [ ] Document security practices and 1Password integration
 - [ ] Add checksum verification for downloaded resources
 - [ ] Create backup strategy for critical configs
+
+## Commit Convention
+
+This repository follows [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `chore`: Maintenance tasks
+- `style`: Code style changes
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+
+Examples:
+- feat(zsh): add new aliases for git commands
+- fix(brew): correct package installation order
+- docs(readme): update installation instructions
