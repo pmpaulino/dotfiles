@@ -1,75 +1,120 @@
 # github.com/pmpaulino/dotfiles
 
-dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
+Personal dotfiles managed with [`chezmoi`](https://github.com/twpayne/chezmoi), featuring:
+
+- Cross-platform support (macOS and Linux)
+- Secure secrets management with 1Password
+- Automated package installation with Homebrew and apt
+- Extensive development tooling configuration
+- Terminal customization with zsh and oh-my-zsh
+
+## Features
+
+### 🔐 Security-First Approach
+
+- 1Password integration for secure secrets management
+- SSH and GPG key configuration
+- Secure git signing setup
+
+### 🛠️ Development Environment
+
+- Comprehensive Git configuration with conditional includes
+- Language support: Go, Python, Node.js
+- Container tools: Docker, Kubernetes, Helm
+- Infrastructure tools: Terraform, AWS CLI
+
+### 📱 Terminal & Shell
+
+- zsh with oh-my-zsh
+- Custom aliases and functions
+- Syntax highlighting
+- Command auto-completion
+- Directory jumping with zoxide
+
+### 🎨 Theme & Styling
+
+- Catppuccin Mocha theme across tools
+- Configured for:
+  - bat
+  - btop
+  - helix
+  - k9s
+  - lazygit
+
+### 🖥️ Window Management
+
+- AeroSpace window manager configuration (macOS)
+- Workspace organization
+- Custom keybindings
 
 ## Prerequisites
 
 1. Install [1Password](https://1password.com/downloads/mac/)
-2. Enable 1Password CLI in 1Password Developer Settings
+2. Enable 1Password CLI in 1Password → Developer Settings
+3. Configure 1Password SSH agent
 
-## Install
+## Installation
+
+### Install chezmoi and initialize the dotfiles
 
 ```shell
 sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin # this location should work for both linux and macos, feel free to change it
 chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 ```
 
-This will install and initialize `chezmoi`. During this initialization, `chezmoi` will run the [install.sh](run_once_before_install.sh.tmpl) script, which will install:
-
-- `oh-my-zsh`
-- `homebrew`
-- run the `brew budle` command
-
-You will also need to manually configure the 1Password CLI GitHub plugin:
+### Configure 1Password CLI GitHub integration
 
 ```shell
 op plugin init gh
 ```
 
-## Improvements
+## Structure
 
-### TODO
+```text
+.
+├── .chezmoidata/          # Template data files
+├── dot_config/            # User configuration files
+├── dot_zshrc.tmpl         # Shell configuration
+├── private_dot_ssh/       # SSH configuration
+└── run_once_*.sh.tmpl     # Installation scripts
+```
 
-- [ ] Automate 1Password CLI configuration using chezmoi
-- [ ] Migrate application configs to ~/.config directory:
-  - [ ] k9s
-  - [ ] ghostty
-  - [ ] lazygit
-- [ ] Add Raycast configuration and settings
-- [ ] Fix btop configuration to use dynamic home directory path
-- [ ] Download themes during install rather than storing in repo
-- [ ] Complete migration to goenv for Go version management
-- [ ] Evaluate migration from Homebrew to Nix package manager
+## Customization
 
-### Documentation
+### Adding New Packages
 
-- [ ] Add detailed setup/installation guide
-- [ ] Document templating patterns and decisions
-- [ ] Add customization guide for personal preferences
-- [ ] Document cross-platform differences and considerations
+Edit `.chezmoidata/packages.yaml` to add:
 
-### Package Management
+- Homebrew formulae and casks
+- Linux apt packages
+- App Store applications (macOS)
 
-- [ ] Reorganize packages.yaml into purpose-specific groups (dev, productivity, system)
-- [ ] Add version pinning for critical tools
-- [ ] Document package update strategy and maintenance
-- [ ] Add rationale for package selections
+### Modifying Shell Configuration
 
-### Installation & Maintenance
+The `dot_zshrc.tmpl` file contains:
 
-- [ ] Add installation verification steps
-- [ ] Create rollback procedures for failed installations
-- [ ] Add testing framework for installation scripts
-- [ ] Automate remaining manual setup steps
-- [ ] Add system health checks and diagnostics
+- Environment variables
+- Path configurations
+- Aliases
+- Plugin settings
 
-### Security & Best Practices
+### Client-Specific Settings
 
-- [ ] Document security practices and 1Password integration
-- [ ] Add checksum verification for downloaded resources
-- [ ] Create backup strategy for critical configs
+Separate Git configurations exist for different contexts:
 
-## Commit Convention
+- Personal (`dot_gitconfig.tmpl`)
+- Client-specific (`Projects/*/dot_gitconfig.tmpl`)
+
+## Maintenance
+
+### Updates
+
+- Make changes to dotfiles via `chezmoi edit`
+- Apply local changes with `chezmoi apply`
+- Commit changes to remote dotfiles, when ready
+- Update local dotfiles repo from remote with `chezmoi update`
+
+### Commit Convention
 
 This repository follows [Conventional Commits](https://www.conventionalcommits.org/):
 
@@ -79,10 +124,3 @@ This repository follows [Conventional Commits](https://www.conventionalcommits.o
 - `chore`: Maintenance tasks
 - `style`: Code style changes
 - `refactor`: Code refactoring
-- `test`: Adding or updating tests
-
-Examples:
-
-- feat(zsh): add new aliases for git commands
-- fix(brew): correct package installation order
-- docs(readme): update installation instructions
