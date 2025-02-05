@@ -4,6 +4,7 @@ README.md
 .gitignore
 CHANGELOG.md
 LICENSE
+ROADMAP.md
 
 {{- if ne .chezmoi.os "darwin" }}
 Library/
