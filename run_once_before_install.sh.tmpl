@@ -31,8 +31,7 @@ fi
 # Install Homebrew
 if ! command -v brew &> /dev/null; then
   sudo apt update && sudo apt install -y build-essential
-  # TODO make this non-interactive
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if ! grep -q 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' ~/.zshrc; then
@@ -45,7 +44,12 @@ if ! grep -q 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' ~/.bashrc;
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# TODO eval $SHELL or something similar to make sure the shellenv is sourced
+# Reload shell configuration based on current shell
+if [ -n "$ZSH_VERSION" ]; then
+  source ~/.zshrc
+elif [ -n "$BASH_VERSION" ]; then
+  source ~/.bashrc
+fi
 
 # Check if gcc is installed
 if ! dpkg-query -W -f='${Status}' gcc 2>/dev/null | grep -q "ok installed"; then

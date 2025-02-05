@@ -10,7 +10,8 @@ dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 ## Install
 
 ```shell
-GITHUB_USERNAME=pmpaulino sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply $GITHUB_USERNAME
+sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin # this location should work for both linux and macos, feel free to change it
+chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 ```
 
 This will install and initialize `chezmoi`. During this initialization, `chezmoi` will run the [install.sh](run_once_before_install.sh.tmpl) script, which will install:
@@ -23,12 +24,6 @@ You will also need to manually configure the 1Password CLI GitHub plugin:
 
 ```shell
 op plugin init gh
-```
-
-You should also disable rancher desktop managing your dotfiles by running:
-
-```shell
-rdctl set --application.path-management-strategy manual
 ```
 
 ## Improvements
