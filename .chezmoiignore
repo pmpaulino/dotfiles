@@ -3,6 +3,7 @@ README.md
 .github/
 .gitignore
 CHANGELOG.md
+LICENSE
 
 {{- if ne .chezmoi.os "darwin" }}
 Library/
