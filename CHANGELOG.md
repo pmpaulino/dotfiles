@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/pmpaulino/dotfiles/compare/v1.2.0...v1.3.0) (2025-02-22)
+
+
+### Features
+
+* **k9s:** add Catppuccin theme skins and configuration ([4b83a3a](https://github.com/pmpaulino/dotfiles/commit/4b83a3acc7e86c9001f9498a16080a329ad0d23a))
+
 # [1.2.0](https://github.com/pmpaulino/dotfiles/compare/v1.1.0...v1.2.0) (2025-02-04)
 
 
