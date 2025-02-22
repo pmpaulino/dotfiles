@@ -160,25 +160,27 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 # kpv3-cli
-if [ -f "$HOME/.kpv3-cli/bin/kpv3-cli" ]; then
-    source <($HOME/.kpv3-cli/bin/kpv3-cli source)
-fi
+# if [ -f "$HOME/.kpv3-cli/bin/kpv3-cli" ]; then
+#     source <($HOME/.kpv3-cli/bin/kpv3-cli source)
+# fi
 
-if ! [ -s $HOME/.kpv3-cli/consent.yaml ]; then
-    kpv3-cli consent
-fi
-if ! [ -s $HOME/.kube/k8s-platform-v3 ]; then
-    kpv3-cli kubeconfig -w
-fi
+# if ! [ -s $HOME/.kpv3-cli/consent.yaml ]; then
+#     kpv3-cli consent
+# fi
+# if ! [ -s $HOME/.kube/k8s-platform-v3 ]; then
+#     kpv3-cli kubeconfig -w
+# fi
+
+export KUBECONFIG=/Users/patrick/Projects/pmpaulino/homelab/talos/tmp/kubeconfig
 
 # thefuck
 eval $(thefuck --alias)
 
 # syntax highlighting
 {{- if eq .chezmoi.os "linux" }}
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- else }}
-    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- end }}
 
 # zoxide
@@ -191,3 +193,15 @@ export FZF_DEFAULT_OPTS=" \
     --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
     --color=selected-bg:#45475a \
     --multi"
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CONFIG_DIRS="/etc/xdg"
+export XDG_CONFIG_DIRS="/etc/xdg"
+
+export K9S_CONFIG="${HOME}/.config/k9s"
