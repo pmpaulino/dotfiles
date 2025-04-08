@@ -10,8 +10,10 @@ packages:
       - "nikitabobko/tap"
       - "norwoodj/tap"
       - "snyk/tap"
+      - "FelixKratz/formulae"
     brews:
       - "pycparser"
+      - "borders"
       - "cffi"
       - "cryptography"
       - "ansible"

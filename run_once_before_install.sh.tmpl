@@ -84,7 +84,7 @@ fi
 
 {{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
 echo "📦  Installing packages..."
-brew bundle --no-upgrade --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
   tap {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew_tap.value }}
   brew {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew.value }}
 EOF
