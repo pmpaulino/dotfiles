@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pmpaulino/dotfiles/compare/v1.4.0...v1.4.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* **aerospace:** update after-startup-command colors and width ([b200b65](https://github.com/pmpaulino/dotfiles/commit/b200b6558fd036981ed8e92704534f58b06bc37b))
+
 # [1.4.0](https://github.com/pmpaulino/dotfiles/compare/v1.3.0...v1.4.0) (2025-04-08)
 
 
