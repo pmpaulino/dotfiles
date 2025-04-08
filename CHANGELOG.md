@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/pmpaulino/dotfiles/compare/v1.3.0...v1.4.0) (2025-04-08)
+
+
+### Features
+
+* **aerospace:** enhance configuration for workspace management and application detection ([b1abd2e](https://github.com/pmpaulino/dotfiles/commit/b1abd2e05549bc9ed3bf39476d82b298845aae5f))
+
 # [1.3.0](https://github.com/pmpaulino/dotfiles/compare/v1.2.0...v1.3.0) (2025-02-22)
 
 
