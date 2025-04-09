@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/pmpaulino/dotfiles/compare/v1.4.1...v1.4.2) (2025-04-09)
+
+
+### Bug Fixes
+
+* **aerospace:** enable automatic unhide for macOS hidden apps ([c6cdcd5](https://github.com/pmpaulino/dotfiles/commit/c6cdcd5e7c327b13b1cd2012f4d034724a308e62))
+
 ## [1.4.1](https://github.com/pmpaulino/dotfiles/compare/v1.4.0...v1.4.1) (2025-04-08)
 
 
