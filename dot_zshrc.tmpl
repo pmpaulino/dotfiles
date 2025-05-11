@@ -174,7 +174,7 @@ fpath+=~/.zfunc
 #     kpv3-cli kubeconfig -w
 # fi
 
-export KUBECONFIG=/Users/patrick/Projects/pmpaulino/homelab/talos/tmp/kubeconfig
+export KUBECONFIG=/Users/patrick/Projects/pmpaulino/homelab/clusters/talos/tmp/kubeconfig
 
 # thefuck
 eval $(thefuck --alias)
@@ -213,3 +213,19 @@ export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# dotnet
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+export PATH="/opt/homebrew/opt/dotnet@6/bin:$PATH"
+export MONO_GAC_PREFIX="/opt/homebrew"
+
+# java
+# sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+
+# ngrok
+if command -v ngrok &>/dev/null; then
+    eval "$(ngrok completion)"
+fi

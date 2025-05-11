@@ -2,8 +2,6 @@
 
 ## Technical Debt
 
-### Configuration Management
-
 - [ ] Fix hardcoded home directory path in btop configuration
 - [ ] Move themes out of repo into downloaded resources
 - [ ] Migrate application configs to ~/.config directory:

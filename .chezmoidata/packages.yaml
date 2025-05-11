@@ -12,6 +12,7 @@ packages:
       - "snyk/tap"
     brews:
       - "pycparser"
+      - "watch"
       - "cffi"
       - "cryptography"
       - "ansible"
