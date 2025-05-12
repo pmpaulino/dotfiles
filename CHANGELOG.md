@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/pmpaulino/dotfiles/compare/v1.4.2...v1.5.0) (2025-05-12)
+
+
+### Features
+
+* **dot_zshrc:** add fzf source command for Zsh integration ([de6a72c](https://github.com/pmpaulino/dotfiles/commit/de6a72cd7a159208b1c83cef6093430f6cd859ad))
+
 ## [1.4.2](https://github.com/pmpaulino/dotfiles/compare/v1.4.1...v1.4.2) (2025-04-09)
 
 
