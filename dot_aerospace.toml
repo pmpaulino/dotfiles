@@ -23,6 +23,8 @@ after-startup-command = [
     'move-workspace-to-monitor --workspace "N" "main"',
     'move-workspace-to-monitor --workspace "S" "main"',
     'move-workspace-to-monitor --workspace "T" "secondary"',
+    # Set Cursor to vertical accordion layout
+    "exec-and-forget aerospace layout --window-id $(aerospace list-windows --all | grep 'Cursor' | head -n1 | awk '{print $1}') v_accordion"
 ]
 
 # Start AeroSpace at login
@@ -38,7 +40,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -273,6 +275,10 @@ run = 'move-node-to-workspace S'
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'layout floating'
 
 # wildcard for all apps that don't have a specific rule
 [[on-window-detected]]
