@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/pmpaulino/dotfiles/compare/v1.5.0...v1.6.0) (2025-05-17)
+
+
+### Features
+
+* **aerospace:** update layout configuration and application detection rules ([93e63fb](https://github.com/pmpaulino/dotfiles/commit/93e63fbe0ad2afaf38239e521daf1dc86953c696))
+
 # [1.5.0](https://github.com/pmpaulino/dotfiles/compare/v1.4.2...v1.5.0) (2025-05-12)
 
 
