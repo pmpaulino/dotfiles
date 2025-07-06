@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/pmpaulino/dotfiles/compare/v1.6.0...v1.7.0) (2025-07-06)
+
+
+### Features
+
+* **aerospace:** add new application detection rules for Firefox and LocalAuthentication ([56058aa](https://github.com/pmpaulino/dotfiles/commit/56058aaea4998ac47276a83a41814160a9a85f30))
+
 # [1.6.0](https://github.com/pmpaulino/dotfiles/compare/v1.5.0...v1.6.0) (2025-05-17)
 
 
