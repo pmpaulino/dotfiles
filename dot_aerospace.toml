@@ -232,6 +232,10 @@ if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
 if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace C'
 
@@ -278,6 +282,10 @@ run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.LocalAuthentication.UIAgent'
 run = 'layout floating'
 
 # wildcard for all apps that don't have a specific rule

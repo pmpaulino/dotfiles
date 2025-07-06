@@ -73,7 +73,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(1password aliases alias-finder ansible brew chezmoi colored-man-pages colorize command-not-found common-aliases direnv docker docker-compose fzf gatsby gcloud gh git-auto-fetch gnu-utils golang helm history istioctl jira kubectl kubectx macos nvm opentofu pre-commit python sigstore skaffold ssh sudo terraform thefuck themes tldr vscode zoxide)
+plugins=(1password aliases alias-finder ansible brew chezmoi colored-man-pages colorize command-not-found common-aliases direnv docker docker-compose fzf gatsby gcloud gh git-auto-fetch gnu-utils golang history istioctl jira kubectl kubectx macos nvm opentofu pre-commit python sigstore skaffold ssh sudo terraform thefuck themes tldr vscode zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -230,3 +230,10 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 if command -v ngrok &>/dev/null; then
     eval "$(ngrok completion)"
 fi
+
+# pnpm
+export PNPM_HOME="/Users/patrick/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
