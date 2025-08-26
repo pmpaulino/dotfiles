@@ -1,6 +1,0 @@
-{{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
-[user]
-    name = Patrick Paulino
-    email = {{ (onepasswordItemFields "cg7z24pmvlbjmi6xwc4s4muqvi").email.value }}
-    signingkey = {{ (onepasswordDetailsFields "cg7z24pmvlbjmi6xwc4s4muqvi").public_key.value }}
-{{- end }}
