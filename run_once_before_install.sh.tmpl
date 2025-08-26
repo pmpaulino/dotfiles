@@ -82,21 +82,18 @@ if ! grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-{{- if eq .chezmoi.hostname "Mac-WP2DG2N2" }}
-echo "📦  Installing packages..."
-brew bundle --file=/dev/stdin <<EOF
-  tap {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew_tap.value }}
-  brew {{ (onepasswordItemFields "jshezjjznm6m676hkesgisns7i").brew.value }}
-EOF
-{{- end }}
-
+# Install 1Password CLI first (needed for gitconfig template)
+if ! command -v op &> /dev/null; then
+  echo "🔐  Installing 1Password CLI..."
+  brew install 1password-cli
+fi
 {{- end }}
 
 # Install Oh My Zsh
 if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
   (echo '💰  Installing oh-my-zsh' && yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
 fi
-
+ 
 # # Cleanup chezmoi
 # if [ -f ~/.local/bin/chezmoi ]; then
 #   echo "🧹  Cleaning up chezmoi..."
