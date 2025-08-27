@@ -58,6 +58,7 @@ packages:
       - "yq"
       - "zoxide"
       - "zsh-syntax-highlighting"
+      - "fnm"
       - "dagger/tap/dagger"
       - "equinix-labs/otel-cli/otel-cli"
       - "hashicorp/tap/vault"
