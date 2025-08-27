@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/pmpaulino/dotfiles/compare/v1.7.0...v1.8.0) (2025-08-27)
+
+
+### Features
+
+* **aerospace:** enhance application detection rules for Chrome and Brave ([bf211dd](https://github.com/pmpaulino/dotfiles/commit/bf211dd0f21009dd55a892cd3b82271364bee7ab))
+
 # [1.7.0](https://github.com/pmpaulino/dotfiles/compare/v1.6.0...v1.7.0) (2025-07-06)
 
 
