@@ -18,7 +18,7 @@ after-startup-command = [
     'move-workspace-to-monitor --workspace "B" "secondary"',
     'move-workspace-to-monitor --workspace "C" "main"',
     'move-workspace-to-monitor --workspace "E" "secondary"',
-    'move-workspace-to-monitor --workspace "F" "main"',
+    # 'move-workspace-to-monitor --workspace "F" "main"',
     'move-workspace-to-monitor --workspace "M" "main"',
     'move-workspace-to-monitor --workspace "N" "main"',
     'move-workspace-to-monitor --workspace "S" "main"',
@@ -132,7 +132,9 @@ alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
+alt-ctrl-cmd-shift-1 = 'workspace 1'
 alt-2 = 'workspace 2'
+alt-ctrl-cmd-shift-2 = 'workspace 2'
 # alt-3 = 'workspace 3'
 # alt-4 = 'workspace 4'
 # alt-5 = 'workspace 5'
@@ -142,20 +144,27 @@ alt-2 = 'workspace 2'
 # alt-9 = 'workspace 9'
 # alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 alt-b = 'workspace B'
+alt-ctrl-cmd-shift-b = 'workspace B'
 alt-c = 'workspace C'
+alt-ctrl-cmd-shift-c = 'workspace C'
 # alt-d = 'workspace D'
 alt-e = 'workspace E'
-alt-f = 'workspace F'
+alt-ctrl-cmd-shift-e = 'workspace E'
+# alt-f = 'workspace F'
 # alt-g = 'workspace G'
 # alt-i = 'workspace I'
 alt-m = 'workspace M'
+alt-ctrl-cmd-shift-m = 'workspace M'
 alt-n = 'workspace N'
+alt-ctrl-cmd-shift-n = 'workspace N'
 # alt-o = 'workspace O'
 # alt-p = 'workspace P'
 # alt-q = 'workspace Q'
 # alt-r = 'workspace R'
 alt-s = 'workspace S'
+alt-ctrl-cmd-shift-s = 'workspace S'
 alt-t = 'workspace T'
+alt-ctrl-cmd-shift-t = 'workspace T'
 # alt-u = 'workspace U'
 # alt-v = 'workspace V'
 # alt-w = 'workspace W'
@@ -178,7 +187,7 @@ alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 # alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
-alt-shift-f = 'move-node-to-workspace F'
+# alt-shift-f = 'move-node-to-workspace F'
 # alt-shift-g = 'move-node-to-workspace G'
 # alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
@@ -201,7 +210,7 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-# I've mapped caps lock to hyper key using Karabiner-Elements
+# I've mapped caps lock to hyper key using raycast
 alt-ctrl-cmd-shift-tab = 'workspace --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
@@ -307,4 +316,4 @@ run = 'layout floating'
 # wildcard for all apps that don't have a specific rule
 [[on-window-detected]]
 if.app-name-regex-substring = '...'
-run = 'move-node-to-workspace 1'
+run = 'layout floating'

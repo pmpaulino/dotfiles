@@ -107,6 +107,7 @@ fi
 if [ -f "$HOME/.config/op/plugins.sh" ]; then
     source "$HOME/.config/op/plugins.sh"
 fi
+export OP_ACCOUNT="my.1password.com"
 
 # Homebrew
 {{- if eq .chezmoi.os "linux" }}
