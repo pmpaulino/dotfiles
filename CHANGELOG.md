@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/pmpaulino/dotfiles/compare/v1.8.0...v1.9.0) (2025-08-27)
+
+
+### Features
+
+* **aerospace, dot_zshrc:** update workspace shortcuts and environment variables ([90a16a8](https://github.com/pmpaulino/dotfiles/commit/90a16a83d7d1ab1a176e9bffd8c759265cbde0d3))
+
 # [1.8.0](https://github.com/pmpaulino/dotfiles/compare/v1.7.0...v1.8.0) (2025-08-27)
 
 
