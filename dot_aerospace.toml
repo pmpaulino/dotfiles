@@ -236,11 +236,27 @@ if.app-id = 'org.mozilla.firefox'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
 if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser.app.kjbdgfilnfhdoflbpgamdcdgpehopbep'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser.app.fmgjjmmmlfnkbppncabfkddbjimcfncm'
 run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
@@ -251,10 +267,6 @@ run = 'move-node-to-workspace E'
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
 run = 'move-node-to-workspace E'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace F'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
@@ -286,6 +298,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.LocalAuthentication.UIAgent'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
 run = 'layout floating'
 
 # wildcard for all apps that don't have a specific rule
