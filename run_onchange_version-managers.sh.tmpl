@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Node.js installation with fnm
+{{ if .env.fnm -}}
+  {{ range .env.fnm.versions -}}
+    fnm install {{ . }}
+  {{ end -}}
+  fnm use {{ .env.fnm.default }}
+  fnm default {{ .env.fnm.default }}
+{{- end }}
+
+# Terraform installation with tfenv
+{{ if .env.tfenv -}}
+  {{ range .env.tfenv.versions -}}
+    tfenv install {{ . }}
+  {{ end -}}
+  tfenv use {{ .env.tfenv.default }}
+{{- end }}
+
+# Go installation with goenv
+{{ if .env.goenv -}}
+  {{ range .env.goenv.versions -}}
+    goenv install -s {{ . }}
+  {{ end -}}
+  goenv global {{ .env.goenv.default }}
+{{- end }}
