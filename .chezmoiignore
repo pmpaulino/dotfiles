@@ -10,3 +10,8 @@ ROADMAP.md
 Library/
 Library/**
 {{- end }}
+
+# Node.js related files that should not be managed by chezmoi
+node_modules/
+.npm/
+.nvm/

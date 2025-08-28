@@ -1,0 +1,20 @@
+#!/bin/bash
+
+{{/* Build the Node.js installation commands first */}}
+{{- $nodejs_commands := "" -}}
+
+{{- if .packages.nodejs -}}
+  {{- range .packages.nodejs.versions }}
+    {{- $nodejs_commands = print $nodejs_commands "echo \"🔧  Installing Node.js " . "...\"\n" -}}
+    {{- $nodejs_commands = print $nodejs_commands "fnm install " . "\n" -}}
+  {{- end }}
+  {{- $nodejs_commands = print $nodejs_commands "echo \"🎯  Setting default Node.js version to " .packages.nodejs.default "...\"\n" -}}
+  {{- $nodejs_commands = print $nodejs_commands "fnm use " .packages.nodejs.default "\n" -}}
+  {{- $nodejs_commands = print $nodejs_commands "fnm default " .packages.nodejs.default "\n" -}}
+  {{- $nodejs_commands = print $nodejs_commands "echo \"✅  Node.js installation complete!\"\n" -}}
+  {{- $nodejs_commands = print $nodejs_commands "fnm ls\n" -}}
+{{- end -}}
+
+echo "📦  Installing Node.js versions..."
+
+{{ $nodejs_commands }}

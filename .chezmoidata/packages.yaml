@@ -117,3 +117,7 @@ packages:
       - gcc
       - 1password
       - 1password-cli
+  nodejs:
+    default: "22.18.0"
+    versions:
+      - "22.18.0"
