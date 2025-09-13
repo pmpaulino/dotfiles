@@ -194,3 +194,17 @@ esac
 
 # goenv
 eval "$(goenv init -)"
+
+# cursor-agent
+export PATH="$HOME/.local/bin:$PATH"
+
+# gcloud project switcher
+gcp() {
+    local project
+    project=$(gcloud projects list --format="table(projectId,name,projectNumber)" | fzf | awk '{print $1}')
+    if [ -n "$project" ]; then
+        gcloud config set project "$project"
+        gcloud auth application-default set-quota-project "$project"
+        echo "Switched to project: $project"
+    fi
+}
