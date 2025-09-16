@@ -292,6 +292,10 @@ if.app-id = 'notion.id'
 run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
+if.app-id = 'com.electron.asana'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace S'
 
@@ -316,18 +320,6 @@ run = 'move-node-to-workspace S'
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace T'
-
-[[on-window-detected]]
-if.app-id = 'com.1password.1password'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.LocalAuthentication.UIAgent'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'layout floating'
 
 # wildcard for all apps that don't have a specific rule
 [[on-window-detected]]
