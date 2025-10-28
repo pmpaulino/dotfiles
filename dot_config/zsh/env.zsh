@@ -32,6 +32,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Application-specific
 export K9S_CONFIG="$HOME/.config/k9s"
 
+# kubectl plugins (krew)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # PostgreSQL (if using Homebrew)
 if [[ -d "/opt/homebrew/opt/libpq" ]]; then
     export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

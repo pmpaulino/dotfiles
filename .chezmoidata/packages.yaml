@@ -69,6 +69,7 @@ packages:
       - "norwoodj/tap/helm-docs"
       - "snyk/tap/snyk"
       - "argoproj/tap/kubectl-argo-rollouts"
+      - "krew"
   darwin:
     taps:
       - "1password/tap"
