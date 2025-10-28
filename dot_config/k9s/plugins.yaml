@@ -1,0 +1,144 @@
+# K9s Plugins Configuration
+# Useful kubectl plugins and custom commands for k9s
+
+plugins:
+  # Pod logs with kubectl
+  pod-logs:
+    shortCut: Ctrl-L
+    description: Pod logs
+    scopes:
+    - pods
+    command: kubectl
+    background: false
+    args:
+    - logs
+    - -f
+    - $NAME
+    - -n
+    - $NAMESPACE
+    - --context
+    - $CONTEXT
+
+  # Port forward
+  port-forward:
+    shortCut: Shift-P
+    description: Port Forward
+    scopes:
+    - pods
+    command: kubectl
+    background: true
+    args:
+    - port-forward
+    - $NAME
+    - 8080:8080
+    - -n
+    - $NAMESPACE
+
+  # Exec into pod
+  exec-bash:
+    shortCut: Shift-E
+    description: Exec into pod (bash)
+    scopes:
+    - pods
+    command: kubectl
+    background: false
+    args:
+    - exec
+    - -it
+    - $NAME
+    - -n
+    - $NAMESPACE
+    - --context
+    - $CONTEXT
+    - -- /bin/bash
+
+  # Describe resource
+  describe:
+    shortCut: Shift-D
+    description: Describe resource
+    scopes:
+    - pods
+    - services
+    - deployments
+    - nodes
+    command: kubectl
+    background: false
+    args:
+    - describe
+    - $RESOURCE
+    - $NAME
+    - -n
+    - $NAMESPACE
+
+  # Get resource YAML
+  get-yaml:
+    shortCut: Shift-Y
+    description: Get YAML
+    scopes:
+    - pods
+    - services
+    - deployments
+    - configmaps
+    - secrets
+    command: kubectl
+    background: false
+    args:
+    - get
+    - $RESOURCE
+    - $NAME
+    - -n
+    - $NAMESPACE
+    - -o
+    - yaml
+
+  # Delete resource (with confirmation)
+  delete:
+    shortCut: Shift-X
+    description: Delete resource
+    scopes:
+    - pods
+    - services
+    - deployments
+    - configmaps
+    confirm: true
+    dangerous: true
+    command: kubectl
+    background: false
+    args:
+    - delete
+    - $RESOURCE
+    - $NAME
+    - -n
+    - $NAMESPACE
+
+  # Restart deployment
+  restart-deployment:
+    shortCut: Shift-R
+    description: Restart deployment
+    scopes:
+    - deployments
+    command: kubectl
+    background: false
+    args:
+    - rollout
+    - restart
+    - deployment
+    - $NAME
+    - -n
+    - $NAMESPACE
+
+  # Scale deployment
+  scale-deployment:
+    shortCut: Shift-S
+    description: Scale deployment
+    scopes:
+    - deployments
+    command: kubectl
+    background: false
+    args:
+    - scale
+    - deployment
+    - $NAME
+    - --replicas=3
+    - -n
+    - $NAMESPACE

@@ -1,17 +1,18 @@
 k9s:
-  liveViewAutoRefresh: false
+  liveViewAutoRefresh: true
   screenDumpDir: /tmp/k9s/screen-dumps
   refreshRate: 2
   maxConnRetry: 5
-  readOnly: false
+  readOnly: true
   noExitOnCtrlC: false
   ui:
-    skin: catppuccin-mocha-transparent
-    enableMouse: true
+    skin: catppuccin-latte-transparent
+    enableMouse: false
     headless: true
     logoless: false
     crumbsless: false
-    reactive: false
+    splashless: false
+    reactive: true
     noIcons: false
     defaultsToFullScreen: false
   skipLatestRevCheck: false
@@ -23,7 +24,7 @@ k9s:
       cpu: 100m
       memory: 100Mi
   imageScans:
-    enable: false
+    enable: true
     exclusions:
       namespaces: []
       labels: {}
