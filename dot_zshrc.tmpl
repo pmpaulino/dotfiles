@@ -2,14 +2,14 @@
 # Source: https://github.com/ohmyzsh/ohmyzsh
 
 # Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" 
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
 # Oh-My-Zsh configuration
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # Plugins - Your original configuration
-plugins=(1password aliases alias-finder ansible brew chezmoi colored-man-pages colorize command-not-found common-aliases direnv docker docker-compose fzf gatsby gcloud gh git-auto-fetch gnu-utils golang history istioctl jira kubectl kubectx macos nvm opentofu pre-commit python sigstore skaffold ssh sudo terraform thefuck themes tldr vscode zoxide)
+plugins=(1password aliases alias-finder ansible brew chezmoi colored-man-pages colorize command-not-found common-aliases direnv docker docker-compose fzf gatsby gcloud gh git-auto-fetch gnu-utils history istioctl jira kubectl kubectx macos nvm opentofu pre-commit python sigstore skaffold ssh sudo terraform thefuck themes tldr vscode zoxide)
 
 # Load Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
