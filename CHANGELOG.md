@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/pmpaulino/dotfiles/compare/v1.9.0...v1.9.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* **dot_zshrc, README.md, .chezmoiignore:** update configurations and documentation ([ef2d6ee](https://github.com/pmpaulino/dotfiles/commit/ef2d6eec44ecd14da7c5348f5614f0c90907b917))
+
 # [1.9.0](https://github.com/pmpaulino/dotfiles/compare/v1.8.0...v1.9.0) (2025-08-27)
 
 
