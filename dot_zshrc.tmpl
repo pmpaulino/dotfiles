@@ -1,8 +1,10 @@
 # Main zshrc - Keep this minimal and fast
 # Source: https://github.com/ohmyzsh/ohmyzsh
 
-# Amazon Q pre block. Keep at the top of this file.
+# Amazon Q pre block. Keep at the top of this file. (macOS only)
+{{ if eq .chezmoi.os "darwin" }}
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+{{ end }}
 
 # Oh-My-Zsh configuration
 export ZSH="$HOME/.oh-my-zsh"

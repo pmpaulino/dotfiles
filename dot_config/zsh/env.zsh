@@ -35,9 +35,10 @@ export K9S_CONFIG="$HOME/.config/k9s"
 # kubectl plugins (krew)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# PostgreSQL (if using Homebrew)
-if [[ -d "/opt/homebrew/opt/libpq" ]]; then
-    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+# PostgreSQL (if using Homebrew; works on both macOS and Linux)
+LIBPQ_PREFIX="$(brew --prefix libpq 2>/dev/null)"
+if [[ -n "$LIBPQ_PREFIX" && -d "$LIBPQ_PREFIX" ]]; then
+    export PATH="$LIBPQ_PREFIX/bin:$PATH"
+    export LDFLAGS="-L$LIBPQ_PREFIX/lib"
+    export CPPFLAGS="-I$LIBPQ_PREFIX/include"
 fi

@@ -2,7 +2,9 @@
 # Keep aliases organized and documented
 
 # System aliases
+{{ if eq .chezmoi.os "darwin" }}
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+{{ end }}
 
 # Git aliases (if not using oh-my-zsh git plugin)
 alias gs='git status'

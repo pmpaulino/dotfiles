@@ -68,6 +68,11 @@ chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 op plugin init gh
 ```
 
+### Linux notes
+
+- **Distro support:** Automated package installation (apt and run-once bootstrap) is tested on **Debian/Ubuntu**. On other distros (Fedora, Arch, etc.) you may need to manually install 1Password, zsh, Homebrew, and VS Code before running `chezmoi apply`.
+- **1Password paths:** The dotfiles assume 1Password’s SSH signing binary at `/opt/1Password/op-ssh-sign` and the SSH agent at `~/.1password/agent.sock`. If your install differs, run `which op-ssh-sign` and check 1Password’s docs for the agent socket, then update `dot_gitconfig.tmpl` and `private_dot_ssh/config.tmpl` accordingly.
+
 ## Structure
 
 ```text

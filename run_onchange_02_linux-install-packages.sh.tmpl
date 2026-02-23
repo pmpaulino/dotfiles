@@ -1,0 +1,31 @@
+#!/bin/bash
+
+{{- if eq .chezmoi.os "linux" }}
+
+# Ensure Homebrew is in PATH when this script runs
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv 2>/dev/null)" || true
+
+{{ if .packages.linux.apt }}
+# Install apt packages (Debian/Ubuntu)
+if command -v apt-get &>/dev/null; then
+  echo "📦  Installing apt packages..."
+  sudo apt-get update
+  sudo apt-get install -y {{ range .packages.linux.apt }}{{ . }} {{ end }}
+fi
+{{ end }}
+
+# Install common packages via Homebrew (same CLI tools as macOS)
+{{- $brewfile := "" -}}
+{{- range .packages.common.taps -}}
+  {{- $brewfile = print $brewfile "tap " (. | quote) "\n" -}}
+{{- end -}}
+{{- range .packages.common.brews -}}
+  {{- $brewfile = print $brewfile "brew " (. | quote) "\n" -}}
+{{- end -}}
+
+echo "📦  Installing Homebrew packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ $brewfile }}
+EOF
+
+{{- end }}
