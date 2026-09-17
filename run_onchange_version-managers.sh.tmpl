@@ -22,5 +22,13 @@
   {{ range .env.goenv.versions -}}
     goenv install -s {{ . }}
   {{ end -}}
-  goenv global {{ .env.goenv.default }}
+  goenv use {{ .env.goenv.default }} --global --yes
+{{- end }}
+
+# Terragrunt installation with tgenv
+{{ if .env.tgenv -}}
+  {{ range .env.tgenv.versions -}}
+    tgenv install {{ . }}
+  {{ end -}}
+  tgenv use {{ .env.tgenv.default }}
 {{- end }}

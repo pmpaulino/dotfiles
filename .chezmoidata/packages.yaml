@@ -9,6 +9,7 @@ packages:
       - "norwoodj/tap"
       - "snyk/tap"
       - "argoproj/tap"
+      - "can1357/tap"
     brews:
       - "pycparser"
       - "watch"
@@ -31,7 +32,7 @@ packages:
       - "unbound"
       - "goenv"
       - "goreleaser"
-      - "helix"
+      - "herdr"
       - "helm"
       - "httpie"
       - "hugo"
@@ -52,9 +53,7 @@ packages:
       - "skaffold"
       - "terraform-docs"
       - "tfenv"
-      - "tflint"
       - "tgenv"
-      - "thefuck"
       - "tree"
       - "uv"
       - "virtualenv"
@@ -70,11 +69,13 @@ packages:
       - "norwoodj/tap/helm-docs"
       - "snyk/tap/snyk"
       - "argoproj/tap/kubectl-argo-rollouts"
+      - "can1357/tap/omp"
       - "krew"
   darwin:
     taps:
       - "1password/tap"
       - "FelixKratz/formulae"
+      - "terraform-linters/tap"
     brews:
       - "borders"
       - "lima"
@@ -96,21 +97,12 @@ packages:
       - "signal"
       - "slack"
       - "spotify"
-      - "visual-studio-code"
+      - "zed"
       - "zoom"
+      - "tflint"
     mas:
       - name: "1Password for Safari"
         id: 1569813296
-      - name: "Amphetamine"
-        id: 937984704
-      - name: "Infuse"
-        id: 1136220934
-      - name: "Keynote"
-        id: 409183694
-      - name: "Numbers"
-        id: 409203825
-      - name: "Pages"
-        id: 409201541
       - name: "Tailscale"
         id: 1475387142
   linux:
@@ -120,20 +112,23 @@ packages:
       - wget
       - gpg
       - apt-transport-https
-      - code
       - gcc
       - 1password
       - 1password-cli
 env:
   fnm:
-    default: "22.18.0"
+    default: "24.21.0"
     versions:
-      - "22.18.0"
+      - "24.21.0"
   tfenv:
-    default: "1.8.0"
+    default: "1.16.3"
     versions:
-      - "1.8.0"
+      - "1.16.3"
   goenv:
-    default: "1.24.6"
+    default: "1.27.1"
     versions:
-      - "1.24.6"
+      - "1.27.1"
+  tgenv:
+    default: "1.1.5"
+    versions:
+      - "1.1.5"

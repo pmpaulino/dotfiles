@@ -27,6 +27,14 @@
   {{- $brewfile = print $brewfile "brew " (. | quote) "\n" -}}
 {{- end -}}
 
+
+{{/* Trust every tap we declare before bundling (Homebrew Tap Trust); official taps are always-trusted no-ops */}}
+{{- range .packages.darwin.taps }}
+brew trust --tap {{ . | quote }}
+{{- end }}
+{{- range .packages.common.taps }}
+brew trust --tap {{ . | quote }}
+{{- end }}
 echo "📦  Installing packages..."
 
 brew bundle --file=/dev/stdin <<EOF
