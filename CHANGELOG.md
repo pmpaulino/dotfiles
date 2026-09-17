@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/pmpaulino/dotfiles/compare/v1.9.1...v1.9.2) (2026-09-17)
+
+
+### Bug Fixes
+
+* **packages:** repair chezmoi apply failures and refresh stale pins ([ef0c5e7](https://github.com/pmpaulino/dotfiles/commit/ef0c5e7b807a2d6aef88851b86f3e9e3bedfe623))
+
 ## [1.9.1](https://github.com/pmpaulino/dotfiles/compare/v1.9.0...v1.9.1) (2026-02-23)
 
 
