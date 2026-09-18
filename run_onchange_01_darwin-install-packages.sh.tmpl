@@ -40,3 +40,12 @@ echo "📦  Installing packages..."
 brew bundle --file=/dev/stdin <<EOF
 {{ $brewfile }}
 EOF
+
+{{- if eq .chezmoi.os "darwin" }}
+# Docker Desktop-free CLI setup (colima + docker + compose/buildx plugins)
+mkdir -p ~/.docker
+[ -f ~/.docker/config.json ] || echo '{}' > ~/.docker/config.json
+jq '.cliPluginsExtraDirs = ((.cliPluginsExtraDirs // []) + ["/opt/homebrew/lib/docker/cli-plugins"] | unique)
+    | .credsStore = (.credsStore // "osxkeychain")' \
+  ~/.docker/config.json > ~/.docker/config.json.tmp && mv ~/.docker/config.json.tmp ~/.docker/config.json
+{{- end }}
