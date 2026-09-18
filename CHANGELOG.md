@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/pmpaulino/dotfiles/compare/v1.9.2...v1.10.0) (2026-09-18)
+
+
+### Features
+
+* **aerospace:** switch to numeric workspace scheme, add notion ([c94ac5b](https://github.com/pmpaulino/dotfiles/commit/c94ac5ba3b446a176ed5ee42df90b5a62f6d8270))
+
 ## [1.9.2](https://github.com/pmpaulino/dotfiles/compare/v1.9.1...v1.9.2) (2026-09-17)
 
 
