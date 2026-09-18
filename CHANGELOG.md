@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/pmpaulino/dotfiles/compare/v1.10.0...v1.11.0) (2026-09-18)
+
+
+### Features
+
+* **packages:** add docker-desktop-free colima setup and devin-cli ([019ed5a](https://github.com/pmpaulino/dotfiles/commit/019ed5ab551539c05a9a4b3be66b61e2ad63a950))
+
 # [1.10.0](https://github.com/pmpaulino/dotfiles/compare/v1.9.2...v1.10.0) (2026-09-18)
 
 
