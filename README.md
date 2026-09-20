@@ -76,18 +76,19 @@ sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin # this location s
 chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 ```
 
-### Configure 1Password CLI GitHub integration
+### GitHub CLI authentication
 
-```shell
-op plugin init gh
-```
+No setup step needed — `gh` is defined as a shell function in
+`dot_config/zsh/core.zsh` that routes through `op plugin run`. The first real
+`gh` command on a new machine prompts you (biometric + item picker) to
+choose your GitHub credential; nothing to run in advance.
 
-The wizard ends by suggesting you run
-`echo "source ~/.config/op/plugins.sh" >> ~/.zshrc` — **skip that.** `~/.zshrc`
-is chezmoi-managed and any manual append to it is silently wiped on the next
-`chezmoi apply`. Sourcing `~/.config/op/plugins.sh` when present is already
-wired into `dot_config/zsh/core.zsh`; once `op plugin init gh` has created
-that file, a fresh shell picks it up automatically.
+By default that choice only lasts for the current terminal session. If you
+want it to persist (per-directory or globally), run `op plugin init gh`
+afterward and pick a broader scope — but ignore the `echo ... >> ~/.zshrc`
+line it suggests at the end: `~/.zshrc` is chezmoi-managed and any manual
+append to it is silently wiped on the next `chezmoi apply`. The sourcing
+it's suggesting is already handled by the function in `core.zsh`.
 
 ### Configure headless/agent secrets access (optional)
 

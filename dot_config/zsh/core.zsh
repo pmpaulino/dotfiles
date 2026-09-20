@@ -35,13 +35,19 @@ eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
 # Cross-platform tool configurations
-# 1Password CLI
-if [ -f "$HOME/.config/op/plugins.sh" ]; then
-    source "$HOME/.config/op/plugins.sh"
-else
-    echo "1Password gh plugin not configured — run: op plugin init gh"
-    echo "(sourcing is already wired here; do not follow its 'echo >> ~/.zshrc' suggestion — that file is chezmoi-managed and will be overwritten)"
-fi
+# 1Password CLI gh shell plugin, defined directly rather than depending on
+# `op plugin init gh` having been run — that command has no non-interactive
+# flags, so relying on it as a manual bootstrap step is easy to forget (it
+# was skipped on this machine once already). This function is generic and
+# portable (no vault/item IDs); OP_PLUGIN_ALIASES_SOURCED silences 1Password
+# CLI's own reminder to source ~/.config/op/plugins.sh. The first real `gh`
+# command on a new machine will interactively prompt to pick a credential —
+# no separate setup step required. Run `op plugin init gh` later only if you
+# want that choice to persist beyond the current terminal session.
+export OP_PLUGIN_ALIASES_SOURCED=1
+gh() {
+    op plugin run -- gh "$@"
+}
 
 # 1Password service-account token, for headless/non-interactive shells only
 # (CI-like scripts, sandboxed agents without desktop-app/biometric access).
