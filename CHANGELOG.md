@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/pmpaulino/dotfiles/compare/v1.12.2...v1.12.3) (2026-09-20)
+
+
+### Bug Fixes
+
+* **secrets:** ship gh plugin function directly, drop op plugin init dependency ([facf5a5](https://github.com/pmpaulino/dotfiles/commit/facf5a5a900b3a26e29927561546fb5a38a36255))
+
 ## [1.12.2](https://github.com/pmpaulino/dotfiles/compare/v1.12.1...v1.12.2) (2026-09-20)
 
 
