@@ -1,3 +1,3 @@
-{{- if eq .context "work" }}
+{{- if .githubEnterpriseIdentity }}
 {{- (onepasswordDetailsFields "cg7z24pmvlbjmi6xwc4s4muqvi").public_key.value -}}
 {{- end }}

@@ -1,4 +1,5 @@
 {{- $context := promptChoice "Context for this machine (personal/work)" (list "personal" "work") -}}
+{{- $githubEnterpriseIdentity := promptBool "Does this machine need a separate work GitHub SSH identity (distinct key/host, not just your personal account in the work org)" false -}}
 # Answers are written to your local, machine-specific chezmoi.toml
 # (~/.config/chezmoi/chezmoi.toml) and are never committed to this repo.
 # Nothing employer- or org-identifying belongs in this file itself —
@@ -6,3 +7,4 @@
 # aliases, etc.) live solely in the generated local config.
 [data]
     context = {{ $context | quote }}
+    githubEnterpriseIdentity = {{ $githubEnterpriseIdentity }}

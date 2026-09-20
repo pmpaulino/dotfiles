@@ -9,7 +9,7 @@ Host *
 Host github.com
   IdentityFile ~/.ssh/{{ (onepasswordItemFields "2mhp2daf5vcvgmscl5vtbp6l5e").file_name.value }}
 
-{{- if eq .context "work" }}
+{{- if .githubEnterpriseIdentity }}
 Host {{ (onepasswordItemFields "cg7z24pmvlbjmi6xwc4s4muqvi").git_hostname.value }}
   IdentityFile ~/.ssh/{{ (onepasswordItemFields "cg7z24pmvlbjmi6xwc4s4muqvi").file_name.value }}
 {{- end }}

@@ -15,9 +15,12 @@ Personal dotfiles managed with [`chezmoi`](https://github.com/twpayne/chezmoi), 
 - 1Password integration for secure secrets management
 - SSH and GPG key configuration
 - Secure git signing setup
-- `context` (personal/work) is a one-time local prompt at `chezmoi init` —
-  never committed, drives which SSH identities/git includes render
-  (`.chezmoi.toml.tmpl`)
+- `context` (personal/work) and `githubEnterpriseIdentity` (bool) are
+  one-time local prompts at `chezmoi init` — never committed
+  (`.chezmoi.toml.tmpl`). `githubEnterpriseIdentity` is independent of
+  `context`: it only controls whether a second SSH identity/git host for a
+  separate work GitHub account renders, for machines that don't just use
+  their personal account in the work org
 - Scripts and agents get secrets via `opr <env-file> <command>` (see
   `dot_config/zsh/functions.zsh`), which resolves `op://` references into a
   child process's environment only — env files in this repo hold references
