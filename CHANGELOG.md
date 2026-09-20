@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/pmpaulino/dotfiles/compare/v1.12.1...v1.12.2) (2026-09-20)
+
+
+### Bug Fixes
+
+* **secrets:** surface missing gh plugin setup instead of silent fallback ([5232e93](https://github.com/pmpaulino/dotfiles/commit/5232e9343f4e09690e7db975318a17af287eb72c))
+
 ## [1.12.1](https://github.com/pmpaulino/dotfiles/compare/v1.12.0...v1.12.1) (2026-09-20)
 
 
