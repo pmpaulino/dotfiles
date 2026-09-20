@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/pmpaulino/dotfiles/compare/v1.12.0...v1.12.1) (2026-09-20)
+
+
+### Bug Fixes
+
+* **secrets:** decouple work GitHub identity from machine context ([31510b5](https://github.com/pmpaulino/dotfiles/commit/31510b51ba16e3e7e84ecf37f9245d80aab55a1d))
+
 # [1.12.0](https://github.com/pmpaulino/dotfiles/compare/v1.11.0...v1.12.0) (2026-09-20)
 
 
