@@ -82,6 +82,13 @@ chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 op plugin init gh
 ```
 
+The wizard ends by suggesting you run
+`echo "source ~/.config/op/plugins.sh" >> ~/.zshrc` — **skip that.** `~/.zshrc`
+is chezmoi-managed and any manual append to it is silently wiped on the next
+`chezmoi apply`. Sourcing `~/.config/op/plugins.sh` when present is already
+wired into `dot_config/zsh/core.zsh`; once `op plugin init gh` has created
+that file, a fresh shell picks it up automatically.
+
 ### Configure headless/agent secrets access (optional)
 
 If you need `gh`, scripts, or a coding agent to authenticate non-interactively

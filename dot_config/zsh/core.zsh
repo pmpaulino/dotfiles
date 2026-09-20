@@ -38,6 +38,9 @@ eval $(thefuck --alias)
 # 1Password CLI
 if [ -f "$HOME/.config/op/plugins.sh" ]; then
     source "$HOME/.config/op/plugins.sh"
+else
+    echo "1Password gh plugin not configured — run: op plugin init gh"
+    echo "(sourcing is already wired here; do not follow its 'echo >> ~/.zshrc' suggestion — that file is chezmoi-managed and will be overwritten)"
 fi
 
 # 1Password service-account token, for headless/non-interactive shells only
