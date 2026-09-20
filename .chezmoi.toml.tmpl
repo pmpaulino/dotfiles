@@ -1,0 +1,8 @@
+{{- $context := promptChoice "Context for this machine (personal/work)" (list "personal" "work") -}}
+# Answers are written to your local, machine-specific chezmoi.toml
+# (~/.config/chezmoi/chezmoi.toml) and are never committed to this repo.
+# Nothing employer- or org-identifying belongs in this file itself —
+# only the prompt logic. Real values (org slugs, internal hosts, vault
+# aliases, etc.) live solely in the generated local config.
+[data]
+    context = {{ $context | quote }}

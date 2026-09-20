@@ -1,8 +1,11 @@
 # Environment variables and PATH configuration
 
 # GitHub
+# gh auth is handled by the 1Password shell plugin (see `op plugin init gh`
+# in dot_zshrc.tmpl) — it injects a short-lived token per invocation via
+# biometric approval. Do not export GITHUB_TOKEN/GH_TOKEN here: doing so
+# bypasses the plugin for every gh call in every shell.
 export GITHUB_USER="pmpaulino"
-export GITHUB_TOKEN="op://Private/xndcgybadcw6stdi6o6xjexexq/token"
 
 # 1Password
 export OP_ACCOUNT="my.1password.com"
