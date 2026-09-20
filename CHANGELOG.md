@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/pmpaulino/dotfiles/compare/v1.11.0...v1.12.0) (2026-09-20)
+
+
+### Bug Fixes
+
+* **secrets:** remove employer-identifying paths and dead github token export ([0ade37b](https://github.com/pmpaulino/dotfiles/commit/0ade37bda21d10841307b898297d8c8b6801d96a))
+
+
+### Features
+
+* **secrets:** add op run wrapper and headless service-account bootstrap ([51f7624](https://github.com/pmpaulino/dotfiles/commit/51f7624f2dfca75577dff9df8a86573b1df91ae2))
+
 # [1.11.0](https://github.com/pmpaulino/dotfiles/compare/v1.10.0...v1.11.0) (2026-09-18)
 
 
