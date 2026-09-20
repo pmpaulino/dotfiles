@@ -81,3 +81,17 @@ newrepo() {
     git add README.md
     git commit -m "Initial commit"
 }
+
+# Run a command with secrets injected from an op://-reference env file for
+# the lifetime of that one process. Never persists resolved values to disk;
+# the env file itself must only ever contain op:// references, not secrets.
+# Usage: opr path/to/env-references.env <command> [args...]
+opr() {
+    local env_file=$1
+    shift
+    if [ -z "$env_file" ] || [ $# -eq 0 ]; then
+        echo "Usage: opr <env-file-with-op-references> <command> [args...]"
+        return 1
+    fi
+    op run --env-file="$env_file" -- "$@"
+}

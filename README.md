@@ -15,6 +15,17 @@ Personal dotfiles managed with [`chezmoi`](https://github.com/twpayne/chezmoi), 
 - 1Password integration for secure secrets management
 - SSH and GPG key configuration
 - Secure git signing setup
+- `context` (personal/work) is a one-time local prompt at `chezmoi init` —
+  never committed, drives which SSH identities/git includes render
+  (`.chezmoi.toml.tmpl`)
+- Scripts and agents get secrets via `opr <env-file> <command>` (see
+  `dot_config/zsh/functions.zsh`), which resolves `op://` references into a
+  child process's environment only — env files in this repo hold references
+  only, never values, and nothing is written to disk
+- Headless/agent shells with no desktop app resolve a 1Password
+  service-account token from the OS keychain instead of biometric approval
+  (`run_once_after_configure-op-service-account.sh`); interactive shells
+  never touch it
 
 ### 🛠️ Development Environment
 
@@ -68,6 +79,14 @@ chezmoi init --apply https://github.com/pmpaulino/dotfiles.git
 op plugin init gh
 ```
 
+### Configure headless/agent secrets access (optional)
+
+If you need `gh`, scripts, or a coding agent to authenticate non-interactively
+on this machine (no desktop app / biometric available), `chezmoi apply` will
+prompt once to store a 1Password service-account token in the OS keychain.
+Skip the prompt (leave it blank) if this machine only ever needs interactive,
+biometric-gated access.
+
 ### Linux notes
 
 - **Distro support:** Automated package installation (apt and run-once bootstrap) is tested on **Debian/Ubuntu**. On other distros (Fedora, Arch, etc.) you may need to manually install 1Password, zsh, Homebrew, and VS Code before running `chezmoi apply`.
@@ -77,11 +96,13 @@ op plugin init gh
 
 ```text
 .
+├── .chezmoi.toml.tmpl     # One-time local prompts (context: personal/work)
 ├── .chezmoidata/          # Template data files
 ├── dot_config/            # User configuration files
 ├── dot_zshrc.tmpl         # Shell configuration
 ├── private_dot_ssh/       # SSH configuration
-└── run_once_*.sh.tmpl     # Installation scripts
+├── run_once_*.sh(.tmpl)   # Installation and one-time setup scripts
+└── run_onchange_*.sh.tmpl # Re-run-on-change setup scripts
 ```
 
 ## Customization

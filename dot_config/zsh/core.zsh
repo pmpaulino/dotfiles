@@ -40,6 +40,19 @@ if [ -f "$HOME/.config/op/plugins.sh" ]; then
     source "$HOME/.config/op/plugins.sh"
 fi
 
+# 1Password service-account token, for headless/non-interactive shells only
+# (CI-like scripts, sandboxed agents without desktop-app/biometric access).
+# Interactive shells use the plugin/desktop integration above instead.
+# See run_once_after_configure-op-service-account.sh for how it's stored.
+if [ -z "$OP_SERVICE_ACCOUNT_TOKEN" ] && [ ! -t 0 ]; then
+    if command -v security >/dev/null 2>&1; then
+        OP_SERVICE_ACCOUNT_TOKEN="$(security find-generic-password -a "$USER" -s op-service-account -w 2>/dev/null)"
+    elif command -v secret-tool >/dev/null 2>&1; then
+        OP_SERVICE_ACCOUNT_TOKEN="$(secret-tool lookup service op-service-account 2>/dev/null)"
+    fi
+    [ -n "$OP_SERVICE_ACCOUNT_TOKEN" ] && export OP_SERVICE_ACCOUNT_TOKEN
+fi
+
 # kubectl completion
 if command -v kubectl &>/dev/null; then
     source <(kubectl completion zsh)
